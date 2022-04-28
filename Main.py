@@ -16,6 +16,23 @@ def crea_cartella(current_path):
         mkdir('plots')
     return pathdirdata
 
+def plot_background():
+    x = array([x for x in range(-10, 10, 1)])
+    y = x*0
+
+    y1 = array([x for x in range(-10, 10, 1)])
+    x1 = x*0
+
+    plt.figure(num=1, figsize=(6, 6))
+    plt.plot(x, y)
+    plt.plot(x1, y1)
+    plt.legend()
+    plt.grid()
+    chdir(plot_dir)
+    plt.savefig("background.png")
+    chdir(curr_path)
+    plt.close()
+
 
 def draw_window(expression, result, graph_name):
     WIN.fill(col_light_grey)
@@ -54,7 +71,7 @@ def main():
     run = True
     expression = ""
     result = ""
-    graph_name = "sfondo.png"
+    graph_name = "background.png"
     nfig = 0
     while run:
         clock.tick(FPS)
@@ -92,6 +109,6 @@ result_bar = pygame.Rect(width // 2 - input_bar_w // 2, height - 2 * (input_bar_
 plot_width, plot_height = width-2*space, height-2*input_bar_h - 4*space
 curr_path = getcwd()
 plot_dir = crea_cartella(curr_path)
-print(curr_path, plot_dir)
+plot_background()
 if __name__ == "__main__":
     main()
